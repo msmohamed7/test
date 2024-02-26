@@ -1,12 +1,11 @@
 package com.spring.mongo.demo.controller;
 
-import java.util.List;
-
+import com.spring.mongo.demo.model.Employee;
+import com.spring.mongo.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.spring.mongo.demo.model.Employee;
-import com.spring.mongo.demo.service.EmployeeService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee-jpa")

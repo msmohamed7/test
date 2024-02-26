@@ -20,6 +20,21 @@ public class Employee implements Serializable {
 	private int empId;
 	private String firstName;
 	private String lastName;
+	private String gender;
+	private int age;
+	private String location;
+	private String languageSkills;
+	private String department;
+	private String jobTitle;
+	private int experience;
 	private float salary;
-	
+
+    public Employee(String id, int empId, String firstName, String lastName, float salary)
+	{
+		this.id = id;
+		this.empId = empId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.salary = salary;
+    }
 }

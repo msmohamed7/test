@@ -1,16 +1,15 @@
 package com.spring.mongo.demo.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.spring.mongo.demo.model.Employee;
 import com.spring.mongo.demo.repository.EmployeeQueryDao;
 import com.spring.mongo.demo.service.EmployeeQueryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class EmployeeQueryServiceImpl implements EmployeeQueryService {
@@ -132,6 +131,125 @@ public class EmployeeQueryServiceImpl implements EmployeeQueryService {
 		// (null != employee.getFirstName() || employee.getEmpId() > 0
 		// || null != employee.getLastName() || employee.getSalary() > 0))
 		return employees;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByAgeRange(int minAge, int maxAg)
+	{
+		if (minAge < maxAg)
+		{
+			return employeeQueryDao.getEmployeesByAgeRange(minAge, maxAg);
+		}
+
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByDepartment(String department)
+	{
+		if (department != null && !department.isEmpty())
+		{
+			return employeeQueryDao.getEmployeesByDepartment(department);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByJobTitle(String jobTitle)
+	{
+		if (jobTitle != null && !jobTitle.isEmpty())
+		{
+			return employeeQueryDao.getEmployeesByJobTitle(jobTitle);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByAgeGreaterThanOrEqualTo(int age)
+	{
+		if (age != 0)
+		{
+			return employeeQueryDao.getEmployeesByAgeGreaterThanOrEqualTo(age);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByAgeLessThanOrEqualTo(int age) {
+		if (age != 0)
+		{
+			return employeeQueryDao.getEmployeesByAgeLessThanOrEqualTo(age);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesBySalaryRange(int minSalary, int maxSalary) {
+		if (minSalary < maxSalary)
+		{
+			return employeeQueryDao.getEmployeesBySalaryRange(minSalary, maxSalary);
+		}
+		return null;
+	}
+
+
+	@Override
+	public List<Employee> getEmployeesByExperienceGreaterThan(int years)
+	{
+		return employeeQueryDao.getEmployeesByExperienceGreaterThan(years);
+	}
+
+	@Override
+	public List<Employee> getEmployeesByExperienceLessThan(int years) {
+		return employeeQueryDao.getEmployeesByExperienceLessThan(years);
+	}
+
+	@Override
+	public List<Employee> getEmployeesByAgeAndDepartment(int age, String department)
+	{
+		if (age != 0 && department != null && !department.isEmpty())
+		{
+			return employeeQueryDao.getEmployeesByAgeAndDepartment(age, department);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByLocation(String location) {
+		if (location != null && !location.isEmpty())
+		{
+			return employeeQueryDao.getEmployeesByLocation(location);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByGender(String gender)
+	{
+		if (gender != null && !gender.isEmpty())
+		{
+			return employeeQueryDao.getEmployeesByGender(gender);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByLanguageSkill(String language)
+	{
+		if (language != null && !language.isEmpty())
+		{
+			return employeeQueryDao.getEmployeesByLanguageSkill(language);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByDepartmentAndSalaryRange(String department, int minSalary, int maxSalary) {
+		if (department != null && !department.isEmpty() && minSalary < maxSalary)
+		{
+			return employeeQueryDao.getEmployeesByDepartmentAndSalaryRange(department, minSalary, maxSalary);
+		}
+		return null;
 	}
 
 }

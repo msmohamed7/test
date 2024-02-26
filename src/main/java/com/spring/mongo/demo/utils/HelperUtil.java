@@ -1,11 +1,11 @@
 package com.spring.mongo.demo.utils;
 
+import com.spring.mongo.demo.model.Employee;
+import com.spring.mongo.demo.model.SuperHero;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
-
-import com.spring.mongo.demo.model.Employee;
-import com.spring.mongo.demo.model.SuperHero;
 
 public class HelperUtil {
 
