@@ -1,8 +1,7 @@
 package com.spring.mongo.demo.repository.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.spring.mongo.demo.model.Employee;
+import com.spring.mongo.demo.repository.EmployeeQueryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -10,12 +9,12 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.spring.mongo.demo.model.Employee;
-import com.spring.mongo.demo.repository.EmployeeQueryDao;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Repository
-class EmployeeQueryDaoImpl implements EmployeeQueryDao {
+public class EmployeeQueryDaoImpl implements EmployeeQueryDao {
 
 
     @Autowired
@@ -77,10 +76,120 @@ class EmployeeQueryDaoImpl implements EmployeeQueryDao {
         Query query = new Query();
         query.addCriteria(Criteria.where("salary").gt(salary));
         query.with(Sort.by(Sort.Direction.ASC, "firstName"));
-        query.with(Sort.by(new Sort.Order(Sort.Direction.ASC, "firstName").ignoreCase()));
+        query.with(Sort.by(Sort.Direction.ASC, "firstName"));
 
         return mongoTemplate.find(query, Employee.class);
     }
+
+
+    @Override
+    public List<Employee> getEmployeesByAgeRange(int minAge, int maxAge) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("age").gte(minAge).lte(maxAge));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByDepartment(String department) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("department").is(department));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByJobTitle(String jobTitle) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("jobTitle").is(jobTitle));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByAgeGreaterThanOrEqualTo(int age) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("age").gte(age));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByAgeLessThanOrEqualTo(int age) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("age").lte(age));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesBySalaryRange(int minSalary, int maxSalary) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("salary").gte(minSalary).lte(maxSalary));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+
+    @Override
+    public List<Employee> getEmployeesByExperienceGreaterThan(int years) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("experience").gt(years));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+
+    @Override
+    public List<Employee> getEmployeesByExperienceLessThan(int years) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("experience").lt(years));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+
+    @Override
+    public List<Employee> getEmployeesByAgeAndDepartment(int age, String department) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("age").is(age).and("department").is(department));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByLocation(String location) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("location").is(location));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByGender(String gender) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("gender").is(gender));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByLanguageSkill(String language) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("languageSkills").in(language));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByDepartmentAndSalaryRange(String department, int minSalary, int maxSalary) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("department").is(department)
+                .and("salary").gte(minSalary).lte(maxSalary));
+
+        return mongoTemplate.find(query, Employee.class);
+    }
+
 
 
 }

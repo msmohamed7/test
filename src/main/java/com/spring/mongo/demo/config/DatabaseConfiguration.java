@@ -1,4 +1,4 @@
-//package com.spring.mongo.demo.config;
+package com.spring.mongo.demo.config;//package com.spring.mongo.demo.config;
 //
 //
 //import com.mongodb.MongoClient;

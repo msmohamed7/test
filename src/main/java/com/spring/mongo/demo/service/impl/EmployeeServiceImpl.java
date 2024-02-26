@@ -1,14 +1,13 @@
 package com.spring.mongo.demo.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.spring.mongo.demo.model.Employee;
 import com.spring.mongo.demo.repository.EmployeeRepository;
 import com.spring.mongo.demo.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -67,32 +66,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return repository.findByFirstNameLike(firstName);
 	}
 
-//	@Override
-//	public Employee getEmployeeByFirstName(Employee employee) {
-//		List<Employee> list = repository.findAll();
-//		for (Employee emp : list) {
-//			if (emp.getFirstName().equals(employee.getFirstName()))
-//				return emp;
-//		}
-//		return Employee.builder().empId(0).firstName("Not Found").lastName("Please enter valid id").salary(0f).build();
-//	}
-//
-//	@Override
-//	public List<Employee> getEmployeeByFrName(Employee employee) {
-//		List<Employee> employees = new ArrayList<>();
-//
-//		if (null != employee && null != employee.getFirstName()
-//				&& !(employee.getFirstName().equals(""))) {
-//			List<Employee> list = repository.findAll();
-//
-//			for (Employee emp : list) {
-//				if (emp.getFirstName().toLowerCase().contains(employee.getFirstName().toLowerCase())) {
-//					employees.add(emp);
-//				}
-//			}
-//		}
-//		return employees;
-//	}
 
 	@Override
 	public List<Employee> getEmployeeBySalaryGreaterThan(int salary) {
